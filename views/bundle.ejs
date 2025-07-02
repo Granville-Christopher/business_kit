@@ -105,7 +105,25 @@
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
-        function payWithPaystack(email) {
+        async function savePremiumSubscriber(fullname, email) {
+            try {
+                const response = await fetch('/premium-subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ fullname, email }),
+                });
+                const data = await response.json();
+                if (!data.success) {
+                    alert('Failed to save premium subscription: ' + data.message);
+                }
+            } catch (error) {
+                alert('Error saving premium subscription.');
+            }
+        }
+
+        function payWithPaystack(fullname, email) {
             let handler = PaystackPop.setup({
                 key: 'pk_live_36cbcfd014a9e909f1b203eefaab7d05446ad166',
                 email: email,
@@ -114,7 +132,8 @@
                 ref: '' + Math.floor(Math.random() * 1000000000 + 1),
                 callback: function (response) {
                     alert('Payment successful. Transaction ref is ' + response.reference);
-                    window.location.href = "/premiumkitii"
+                    savePremiumSubscriber(fullname, email);
+                    window.location.href = "/downloadpremiumkit"; 
                 },
                 onClose: function () {
                     alert('Payment window closed.');
@@ -124,16 +143,26 @@
         }
 
         document.getElementById('pay-button').addEventListener('click', function () {
+            let fullname = prompt("Please enter your full name:");
+            if (!fullname) {
+                alert("Full name is required.");
+                return;
+            }
             let email = prompt("Please enter your email for payment receipt:");
             if (email) {
-                payWithPaystack(email);
+                payWithPaystack(fullname, email);
             }
         });
 
         document.getElementById('pay-button-sticky').addEventListener('click', function () {
+            let fullname = prompt("Please enter your full name:");
+            if (!fullname) {
+                alert("Full name is required.");
+                return;
+            }
             let email = prompt("Please enter your email for payment receipt:");
             if (email) {
-                payWithPaystack(email);
+                payWithPaystack(fullname, email);
             }
         });
     </script>

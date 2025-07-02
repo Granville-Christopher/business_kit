@@ -42,7 +42,15 @@
 
   <section>
     <h2 class="text-2xl font-semibold mb-4">Premium Kit Buyers</h2>
-    <p class="text-gray-500">No data available yet.</p>
+    <% if (premiumSubscribers && premiumSubscribers.length > 0) { %>
+      <ul class="list-disc list-inside text-gray-300">
+        <% premiumSubscribers.forEach(function(subscriber) { %>
+          <li><strong><%= subscriber.fullname || "N/A" %></strong> - <%= subscriber.email %></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p class="text-gray-500">No premium subscribers found.</p>
+    <% } %>
   </section>
 
 </body>
