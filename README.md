@@ -67,4 +67,4 @@ This project is licensed under the ISC License.
 
 ## Author
 
-Granville Bucci
+Granville Bucci Christopher
