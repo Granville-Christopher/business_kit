@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Testimonials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans text-white bg-black min-h-screen flex justify-center items-center py-12 px-4 md:px-0 box-border">
+  <div class="hero-background opacity-50 w-full h-full min-h-screen inset-0 fixed"></div>
+
+  <div class="container mx-auto max-w-xl text-center z-50">
+
+    <h1 class="text-4xl font-black font-montserrat mb-6">We Value Your Feedback!</h1>
+
+    <p class="text-lg text-gray-300 mb-8">
+      If you’ve enjoyed our AI Client Kit and training, please take a moment to share your experience. Your testimonial
+      helps us improve and inspires others.
+    </p>
+
+    <form id="testimonial-form" class="flex flex-col gap-4">
+      <input type="text" name="name" placeholder="Your Name" required
+        class="w-full p-4 border border-gray-300 rounded-md text-base bg-white text-gray-800 placeholder-gray-500 outline-none focus:ring-2 focus:ring-blue-500" />
+      <textarea name="testimonial" rows="6" placeholder="Write your testimonial here..." required
+        class="w-full p-4 border border-gray-300 rounded-md text-base bg-white text-gray-800 placeholder-gray-500 outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      <button type="submit"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 px-8 rounded-md transition duration-300">
+        Submit Testimonial
+      </button>
+    </form>
+
+    <script>
+      document.getElementById('testimonial-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        try {
+          const response = await fetch('/submit-testimonial', {
+            method: 'POST',
+            body: formData,
+          });
+          if (response.ok) {
+            alert('Thank you for your testimonial!');
+            form.reset();
+          } else {
+            alert('Failed to submit testimonial. Please try again later.');
+          }
+        } catch (error) {
+          alert('An error occurred. Please try again later.');
+        }
+      });
+    </script>
+
+  </div>
+
+</body>
+
+</html>

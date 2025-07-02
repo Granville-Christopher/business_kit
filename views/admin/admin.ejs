@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans text-white bg-black min-h-screen p-8">
+
+  <h1 class="text-4xl font-black mb-8">Admin Dashboard</h1>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">Free Kit Subscribers</h2>
+    <% if (freeKitSubscribers && freeKitSubscribers.length > 0) { %>
+      <ul class="list-disc list-inside text-gray-300">
+        <% freeKitSubscribers.forEach(function(subscriber) { %>
+          <li><strong><%= subscriber.fullname || "N/A" %></strong> - <%= subscriber.email %></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p class="text-gray-500">No subscribers found.</p>
+    <% } %>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">Testimonials</h2>
+    <% if (testimonials && testimonials.length > 0) { %>
+      <ul class="list-disc list-inside text-gray-300">
+        <% testimonials.forEach(function(testimonial) { %>
+          <li><strong><%= testimonial.name %></strong>: <%= testimonial.testimonial %></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p class="text-gray-500">No testimonials found.</p>
+    <% } %>
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-semibold mb-4">Premium Kit Buyers</h2>
+    <p class="text-gray-500">No data available yet.</p>
+  </section>
+
+</body>
+
+</html>

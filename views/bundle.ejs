@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium AI Client Kit – $7.99</title>
+
+    <!-- Meta tags for SEO and social -->
+    <meta name="description"
+        content="Unlock the full AI sales kit with templates, funnels, prompts, and client-winning systems — for just $7.99." />
+    <meta property="og:title" content="Premium AI Client Kit" />
+    <meta property="og:description"
+        content="Land clients faster with ready-to-use AI funnels, prompts & templates. Instant access." />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-center items-center text-white text-center px-4">
+    <div class="hero-background opacity-50 w-full h-full min-h-screen inset-0 fixed"></div>
+
+    <!-- Hero Section -->
+    <div class="z-50">
+        <section class="max-w-2xl w-full">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-blue-400">Unlock the Full AI Client Kit + Training</h1>
+            <p class="text-gray-300 mb-6 text-lg">Get everything you need to land clients with AI — even if you're just
+                starting.</p>
+
+            <button
+                id="pay-button"
+                class="bg-blue-500 hover:bg-blue-600 transition text-white font-semibold py-3 px-6 rounded-full inline-block mb-4">
+                🔓 Unlock Now – $7.99
+            </button>
+            <p class="text-sm text-gray-400 italic">100% risk-free. Get a refund within 7 days if it’s not helpful.</p>
+        </section>
+
+        <!-- Benefits -->
+        <section class="mt-12 max-w-2xl w-full text-left">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-300">💡 Benefits & Outcomes</h2>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                <li>Close more clients with proven AI sales funnels</li>
+                <li>Save time with ready-to-use templates and prompts</li>
+                <li>Learn step-by-step AI sales techniques</li>
+                <li>Boost your confidence and sales skills</li>
+            </ul>
+        </section>
+
+        <!-- What’s Inside -->
+        <section class="mt-10 max-w-2xl w-full text-left">
+            <h2 class="text-2xl font-semibold mb-4 text-blue-300">📦 What’s Inside</h2>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                <li>✅ 3 Complete AI Sales Funnels</li>
+                <li>✅ 12 High-Converting ChatGPT Prompts</li>
+                <li>✅ 1-Page Sales Funnel Checklist</li>
+                <li>✅ Case Study Scripts & Templates</li>
+                <li>✅ Sales Page Copy Templates</li>
+                <li>✅ Upwork & LinkedIn Outreach Templates</li>
+                <li>✅ AI-Powered DM and Cold Email Frameworks</li>
+                <li>✅ "Start Today" Mini Action Plan</li>
+                <li>✅ Common Mistakes to Avoid</li>
+                <li>✅ Mini “Offer Builder” Worksheet</li>
+            </ul>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="mt-10 max-w-xl w-full pb-24">
+            <% if (testimonials && testimonials.length > 0) { %>
+                <% testimonials.forEach(function(testimonial) { %>
+                    <blockquote class="text-gray-300 italic border-l-4 border-blue-500 pl-4 mb-6">
+                        “<%= testimonial.testimonial %>”
+                        <br><span class="text-gray-400 text-sm">— <%= testimonial.name %></span>
+                    </blockquote>
+                <% }); %>
+            <% } else { %>
+                <blockquote class="text-gray-300 italic border-l-4 border-blue-500 pl-4">
+                    “I used just one of the funnels and landed my first $350 client in 3 days. Worth every penny.”
+                    <br><span class="text-gray-400 text-sm">— A. James, Freelancer</span>
+                </blockquote>
+            <% } %>
+        </section>
+
+        <!-- Sticky CTA Button -->
+        <div class="fixed bottom-0 left-0 right-0 bg-blue-600 p-4 text-center">
+            <button
+                id="pay-button-sticky"
+                class="text-white font-bold py-3 px-6 rounded-full bg-blue-700 hover:bg-blue-800 inline-block">
+                🔓 Unlock the Full Kit for $7.99
+            </button>
+        </div>
+    </div>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        function payWithPaystack(email) {
+            let handler = PaystackPop.setup({
+                key: 'pk_live_36cbcfd014a9e909f1b203eefaab7d05446ad166',
+                email: email,
+                amount: 799,
+                currency: 'USD',
+                ref: '' + Math.floor(Math.random() * 1000000000 + 1),
+                callback: function (response) {
+                    alert('Payment successful. Transaction ref is ' + response.reference);
+                    window.location.href = "premiumkit"
+                },
+                onClose: function () {
+                    alert('Payment window closed.');
+                },
+            });
+            handler.openIframe();
+        }
+
+        document.getElementById('pay-button').addEventListener('click', function () {
+            let email = prompt("Please enter your email for payment receipt:");
+            if (email) {
+                payWithPaystack(email);
+            }
+        });
+
+        document.getElementById('pay-button-sticky').addEventListener('click', function () {
+            let email = prompt("Please enter your email for payment receipt:");
+            if (email) {
+                payWithPaystack(email);
+            }
+        });
+    </script>
+</body>
+
+</html>
