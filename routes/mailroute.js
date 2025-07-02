@@ -16,7 +16,7 @@ router.get("/premiumkit" ,async (req, res) => {
     }
 })
 router.get("/downloadpremiumkit" ,(req, res) => {
-    res.render("premiumkit");
+    res.render("premiumkitii");
 })
 router.get("/testimonial" ,(req, res) => {
     res.render("testimonials");

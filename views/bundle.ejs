@@ -109,12 +109,12 @@
             let handler = PaystackPop.setup({
                 key: 'pk_live_36cbcfd014a9e909f1b203eefaab7d05446ad166',
                 email: email,
-                amount: 799,
-                currency: 'USD',
+                amount: 10000,
+                currency: 'NGN',
                 ref: '' + Math.floor(Math.random() * 1000000000 + 1),
                 callback: function (response) {
                     alert('Payment successful. Transaction ref is ' + response.reference);
-                    window.location.href = "premiumkit"
+                    window.location.href = "/premiumkitii"
                 },
                 onClose: function () {
                     alert('Payment window closed.');
