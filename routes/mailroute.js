@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { sendKitEmail, sendTestimonial } = require("../controller/emailcontroller");
+const { sendKitEmail, sendTestimonial, sendPremiumKitEmail } = require("../controller/emailcontroller");
 const Testimonial = require("../models/Testimonial");
 
 router.get("/" ,(req, res) => {
@@ -38,7 +38,7 @@ router.get("/admin", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
+router.post("/send-premium-kit", sendPremiumKitEmail);
 router.post("/premium-subscribe", async (req, res) => {
   const { email, fullname } = req.body;
   if (!email) {

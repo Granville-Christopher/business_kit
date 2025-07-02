@@ -1,7 +1,7 @@
-// controllers/emailController.js
-const transporter = require("../config/nodemailer"); // your existing mail config
+const transporter = require("../config/nodemailer"); 
 const Testimonial = require("../models/Testimonial");
 const FreeKitSignup = require("../models/FreeKitSignup");
+const PremiumSubscriber = require("../models/PremiumSubscriber");
 
 const sendKitEmail = async (req, res) => {
   const { email, fullname } = req.body;
@@ -147,7 +147,41 @@ const sendTestimonial = async (req, res) => {
   }
 };
 
+
+const sendPremiumKitEmail = async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ success: false, message: "Email is required." });
+  }
+  try {
+    const mailOptions = {
+      from: `"Granville Bucci" <${process.env.MAIL_USER}>`,
+      to: email,
+      subject: "Your Premium AI Client Kit",
+      html: `
+      <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+        <h2 style="color: #1e40af;">Hello,</h2>
+        <p>Thank you for purchasing the Premium AI Client Kit! You can download your kit using the link below:</p>
+        <div style="margin: 30px 0;">
+          <a href="http://bit.ly/4ewGLJn" style="display: inline-block; background-color: #1e40af; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+            📥 Download Your Premium Kit
+          </a>
+        </div>
+        <p>If you have any questions or need assistance, feel free to reply to this email.</p>
+        <p style="margin-top: 40px;">Best regards,<br/><strong>Granville Bucci</strong></p>
+      </div>
+    `,
+    };
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true, message: "Premium kit email sent!" });
+  } catch (error) {
+    console.error("❌ Premium kit email send error:", error);
+    res.status(500).json({ success: false, message: "Failed to send premium kit email." });
+  }
+};
+
 module.exports = {
   sendKitEmail,
   sendTestimonial,
+  sendPremiumKitEmail,
 };

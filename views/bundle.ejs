@@ -40,8 +40,7 @@
             <p class="text-gray-300 mb-6 text-lg">Get everything you need to land clients with AI — even if you're just
                 starting.</p>
 
-            <button
-                id="pay-button"
+            <button id="pay-button"
                 class="bg-blue-500 hover:bg-blue-600 transition text-white font-semibold py-3 px-6 rounded-full inline-block mb-4">
                 🔓 Unlock Now – $7.99
             </button>
@@ -78,25 +77,25 @@
 
         <!-- Testimonial -->
         <section class="mt-10 max-w-xl w-full pb-24">
-            <% if (testimonials && testimonials.length > 0) { %>
+            <% if (testimonials && testimonials.length> 0) { %>
                 <% testimonials.forEach(function(testimonial) { %>
                     <blockquote class="text-gray-300 italic border-l-4 border-blue-500 pl-4 mb-6">
                         “<%= testimonial.testimonial %>”
-                        <br><span class="text-gray-400 text-sm">— <%= testimonial.name %></span>
+                            <br><span class="text-gray-400 text-sm">— <%= testimonial.name %></span>
                     </blockquote>
-                <% }); %>
-            <% } else { %>
-                <blockquote class="text-gray-300 italic border-l-4 border-blue-500 pl-4">
-                    “I used just one of the funnels and landed my first $350 client in 3 days. Worth every penny.”
-                    <br><span class="text-gray-400 text-sm">— A. James, Freelancer</span>
-                </blockquote>
-            <% } %>
+                    <% }); %>
+                        <% } else { %>
+                            <blockquote class="text-gray-300 italic border-l-4 border-blue-500 pl-4">
+                                “I used just one of the funnels and landed my first $350 client in 3 days. Worth every
+                                penny.”
+                                <br><span class="text-gray-400 text-sm">— A. James, Freelancer</span>
+                            </blockquote>
+                            <% } %>
         </section>
 
         <!-- Sticky CTA Button -->
         <div class="fixed bottom-0 left-0 right-0 bg-blue-600 p-4 text-center">
-            <button
-                id="pay-button-sticky"
+            <button id="pay-button-sticky"
                 class="text-white font-bold py-3 px-6 rounded-full bg-blue-700 hover:bg-blue-800 inline-block">
                 🔓 Unlock the Full Kit for $7.99
             </button>
@@ -123,6 +122,26 @@
             }
         }
 
+        async function sendPremiumKit(email) {
+            try {
+                const response = await fetch('/send-premium-kit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert("✅ Premium Kit sent! Please check your email.");
+                } else {
+                    alert("❌ Failed to send Premium Kit: " + data.message);
+                }
+            } catch (error) {
+                alert("❌ Error sending Premium Kit.");
+            }
+        }
+
         function payWithPaystack(fullname, email) {
             let handler = PaystackPop.setup({
                 key: 'pk_live_36cbcfd014a9e909f1b203eefaab7d05446ad166',
@@ -131,9 +150,9 @@
                 currency: 'NGN',
                 ref: '' + Math.floor(Math.random() * 1000000000 + 1),
                 callback: function (response) {
-                    alert('Payment successful. Transaction ref is ' + response.reference);
+                    alert('✅ Payment successful! Transaction ref: ' + response.reference);
                     savePremiumSubscriber(fullname, email);
-                    window.location.href = "/downloadpremiumkit"; 
+                    sendPremiumKit(email);
                 },
                 onClose: function () {
                     alert('Payment window closed.');
@@ -166,6 +185,8 @@
             }
         });
     </script>
+
+
 </body>
 
 </html>
