@@ -5,7 +5,9 @@ const sendKitEmail = async (req, res) => {
   const { email, fullname } = req.body;
 
   if (!email) {
-    return res.status(400).json({ success: false, message: "Email is required." });
+    return res
+      .status(400)
+      .json({ success: false, message: "Email is required." });
   }
 
   try {
@@ -14,17 +16,28 @@ const sendKitEmail = async (req, res) => {
       to: email,
       subject: "Your Free AI Sales Kit 🎁",
       html: `
-        <p>Hey ${fullname || "there"},</p>
-        <p>As promised — here’s your free <strong>AI Sales Kit</strong>:</p>
-        <ul>
-          <li>✅ 3 client-winning funnels</li>
-          <li>✅ 5 ChatGPT prompts</li>
-          <li>✅ 1-page sales checklist</li>
-        </ul>
-        <p><a href="https://bit.ly/free-ai-kit" style="color:#1e90ff;">📥 Click here to download your kit</a></p>
-        <p>Let me know if you'd like help turning this into your first $49–$500 sale.</p>
-        <p>Cheers,<br/>Granville</p>
-      `,
+    <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+      <h2 style="color: #3b82f6;">Hey ${fullname || "there"},</h2>
+
+      <p>Thanks for signing up! As promised, here’s your free <strong>AI Sales Kit</strong> — everything you need to start turning conversations into cash:</p>
+
+      <ul style="line-height: 1.7;">
+        <li>✅ 3 client-winning funnels</li>
+        <li>✅ 5 ChatGPT prompts</li>
+        <li>✅ 1-page sales checklist</li>
+      </ul>
+
+      <div style="margin: 30px 0;">
+        <a href="https://bit.ly/free-ai-kit" style="display: inline-block; background-color: #3b82f6; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+          📥 Download Your Kit
+        </a>
+      </div>
+
+      <p>Let me know if you’d like help turning this into your first $49–$500 sale. I’ll show you exactly how to do it.</p>
+
+      <p style="margin-top: 40px;">Cheers,<br/><strong>Granville Bucci</strong></p>
+    </div>
+  `,
     };
 
     await transporter.sendMail(mailOptions);
