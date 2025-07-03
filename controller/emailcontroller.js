@@ -14,7 +14,7 @@ const sendKitEmail = async (req, res) => {
 
   try {
     const mailOptions = {
-      from: `"Granville Bucci" <${process.env.MAIL_USER}>`,
+      from: `"Granville Christopher" <${process.env.MAIL_USER}>`,
       to: email,
       subject: "Your Free AI Sales Kit 🎁",
       html: `
@@ -84,7 +84,7 @@ const sendKitEmail = async (req, res) => {
 
     // Send notification email to admin
     const adminMailOptions = {
-      from: `"Granville Bucci" <${process.env.MAIL_USER}>`,
+      from: `"Granville Christopher" <${process.env.MAIL_USER}>`,
       to: process.env.MAIL_USER,
       subject: "New AI Kit Signup",
       html: `
@@ -124,7 +124,7 @@ const sendTestimonial = async (req, res) => {
     await newTestimonial.save();
 
     const mailOptions = {
-      from: `"Granville Bucci" <${process.env.MAIL_USER}>`,
+      from: `"Granville Christopher" <${process.env.MAIL_USER}>`,
       to: process.env.MAIL_USER,
       subject: "New Testimonial Received",
       html: `
@@ -155,7 +155,7 @@ const sendPremiumKitEmail = async (req, res) => {
   }
   try {
     const mailOptions = {
-      from: `"Granville Bucci" <${process.env.MAIL_USER}>`,
+      from: `"Granville Christopher" <${process.env.MAIL_USER}>`,
       to: email,
       subject: "Your Premium AI Client Kit",
       html: `
@@ -168,7 +168,7 @@ const sendPremiumKitEmail = async (req, res) => {
           </a>
         </div>
         <p>If you have any questions or need assistance, feel free to reply to this email.</p>
-        <p style="margin-top: 40px;">Best regards,<br/><strong>Granville Bucci</strong></p>
+        <p style="margin-top: 40px;">Best regards,<br/><strong>Granville Christopher</strong></p>
       </div>
     `,
     };
