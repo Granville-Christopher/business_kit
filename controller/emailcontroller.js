@@ -47,7 +47,7 @@ const sendKitEmail = async (req, res) => {
       </p>
 
       <div style="margin-bottom: 30px;">
-        <a href="https://businesskit-production.up.railway.app/premiumkit" style="display: inline-block; background-color: #1e3a8a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+        <a href="https://www.granvillechristopher.site/premiumkit" style="display: inline-block; background-color: #1e3a8a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
           🚀 Upgrade to Premium – Just $7.99
         </a>
       </div>
@@ -63,7 +63,7 @@ const sendKitEmail = async (req, res) => {
       </p>
 
       <div style="margin: 20px 0;">
-        <a href="https://businesskit-production.up.railway.app/testimonial" style="display: inline-block; background-color: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+        <a href="https://www.granvillechristopher.site/testimonial" style="display: inline-block; background-color: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold;">
           ✍️ Leave a Testimonial
         </a>
       </div>
