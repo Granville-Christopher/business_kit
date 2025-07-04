@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+app.use("/.well-known", express.static(path.join(__dirname, ".well-known")));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Connect to MongoDB
